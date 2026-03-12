@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import DashboardLayout from "@/components/DashboardLayout"
+import api from "@/utils/api"
 
 type Message = {
   role: "interviewer" | "candidate" | "feedback"
@@ -17,7 +18,7 @@ export default function InterviewReport(){
   useEffect(()=>{
 
     fetch(
-      `http://localhost:5000/api/interview/report/${id}`
+      `${import.meta.env.VITE_API_URL}/api/interview/report/${id}`
     )
       .then(res=>res.json())
       .then(data=>{

@@ -37,7 +37,7 @@ const Roadmaps = () => {
     try {
 
       const res = await axios.get(
-        "http://localhost:5000/api/roadmaps"
+        `${import.meta.env.VITE_API_URL}/api/roadmaps`
       );
 
       setRoadmaps(res.data);
@@ -59,7 +59,7 @@ const Roadmaps = () => {
     try {
 
       const res = await axios.get(
-        `http://localhost:5000/api/progress/${user?.id}/${roadmap._id}`
+        `${import.meta.env.VITE_API_URL}/api/progress/${user?.id}/${roadmap._id}`
       );
 
       const completed = res.data.completedModules || 0;
@@ -96,7 +96,7 @@ const Roadmaps = () => {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/progress/update",
+        `${import.meta.env.VITE_API_URL}/api/progress/update`,
         {
           userId: user?.id,
           roadmapId: activeRoadmap._id,
@@ -111,7 +111,7 @@ const Roadmaps = () => {
       if (next === activeRoadmap.modules.length) {
 
         await axios.post(
-          "http://localhost:5000/api/certificates/create",
+          `${import.meta.env.VITE_API_URL}/api/certificates/create`,
           {
             userId: user?.id,
             course: activeRoadmap.title

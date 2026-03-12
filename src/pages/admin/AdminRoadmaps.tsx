@@ -19,7 +19,7 @@ const AdminRoadmaps = () => {
 
   const fetchRoadmaps = async () => {
 
-    const res = await axios.get("http://localhost:5000/api/roadmaps")
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/roadmaps`)
 
     setRoadmaps(res.data)
 
@@ -52,7 +52,7 @@ const AdminRoadmaps = () => {
 
   const createRoadmap = async () => {
 
-    await axios.post("http://localhost:5000/api/roadmaps/create", {
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/roadmaps/create`, {
 
       title,
       modules

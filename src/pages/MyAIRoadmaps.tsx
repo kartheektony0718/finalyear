@@ -31,7 +31,7 @@ const navigate = useNavigate()
     try {
 
       const res = await axios.get(
-        `http://localhost:5000/api/ai/${userId}`
+        `${import.meta.env.VITE_API_URL}/api/ai/${userId}`
       )
 
       setCourses(res.data)

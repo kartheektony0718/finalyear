@@ -36,7 +36,7 @@ const AIRoadmap = () => {
       setLoading(true)
 
       const res = await axios.post(
-        "http://localhost:5000/api/ai/generate-roadmap",
+        `${import.meta.env.VITE_API_URL}/api/ai/generate-roadmap`,
         { skill }
       )
 
@@ -68,7 +68,7 @@ const AIRoadmap = () => {
     setSaving(true);
 
     const res = await axios.post(
-      "http://localhost:5000/api/ai/save",
+      `${import.meta.env.VITE_API_URL}/api/ai/save`,
       {
         userId: user?.id,
         title: roadmap.title,

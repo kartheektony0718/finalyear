@@ -68,7 +68,7 @@ export default function InterviewPrep() {
     }
     setLoading(true)
     try {
-      const res = await fetch("http://localhost:5000/api/interview/start", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ resumeText, jobDescription })
@@ -90,7 +90,7 @@ export default function InterviewPrep() {
     setAnswer("")
     setLoading(true)
     try {
-      const res = await fetch("http://localhost:5000/api/interview/feedback", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/interview/feedback`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question, answer: candidateAnswer, jobDescription })
@@ -141,7 +141,7 @@ export default function InterviewPrep() {
     const user = JSON.parse(localStorage.getItem("user") || "{}")
 
     const res = await fetch(
-      "http://localhost:5000/api/interview/save",
+      `${import.meta.env.VITE_API_URL}/api/interview/save`,
       {
         method:"POST",
         headers:{

@@ -63,7 +63,7 @@ export default function Dashboard() {
 const user = JSON.parse(localStorage.getItem("user") || "{}")
 
 const res = await fetch(
- `http://localhost:5000/api/interview/history/${user.id}`,
+ `${import.meta.env.VITE_API_URL}/api/interview/history/${user.id}`,
  {
    headers:{
      Authorization:`Bearer ${token}`

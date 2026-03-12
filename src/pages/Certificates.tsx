@@ -22,7 +22,7 @@ const Certificates = () => {
   const fetchCertificates = async()=>{
 
     const res = await axios.get(
-      `http://localhost:5000/api/certificates/${user?.id}`
+      `${import.meta.env.VITE_API_URL}/api/certificates/${user?.id}`
     );
 
     setCerts(res.data);
