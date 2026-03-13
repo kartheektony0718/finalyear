@@ -60,28 +60,37 @@ export default function InterviewPrep() {
       return newMutedState
     })
   }
+const startInterview = async () => {
+  if (!resumeText || !jobDescription) {
+    toast.error("Provide resume and job description")
+    return
+  }
 
-  const startInterview = async () => {
-    if (!resumeText || !jobDescription) {
-      toast.error("Provide resume and job description")
-      return
-    }
-    setLoading(true)
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
+  setLoading(true)
+
+  try {
+
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/interview/start`,
+      {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ resumeText, jobDescription })
-      })
-      const data = await res.json()
-      setMessages([{ role: "interviewer", content: data.question }])
-      speakText(data.question)
-      setStarted(true)
-    } finally {
-      setLoading(false)
-    }
-  }
+      }
+    )
 
+    const data = await res.json()
+
+    setMessages([{ role: "interviewer", content: data.question }])
+
+    speakText(data.question)
+
+    setStarted(true)
+
+  } finally {
+    setLoading(false)
+  }
+}
   const sendAnswer = async () => {
     if (!answer) return
     const question = messages.filter(m => m.role === "interviewer").pop()?.content || ""
